@@ -1,29 +1,26 @@
-import {configureStore} from '@reduxjs/toolkit';
-import {render, RenderResult} from '@testing-library/react';
-import React from 'react';
-import {Provider} from 'react-redux';
-import {store as defaultStore, RootState} from './store'; // Make sure paths are correct
-import movieSlice from './modules/movieSlice';
+// store/testLibraryUtils.ts
 
-interface RenderWithReduxOptions {
-  store?: typeof defaultStore;
-  initialState?: RootState;
-}
-export function renderWithRedux(
-  ui: React.ReactNode,
-  {store, initialState}: RenderWithReduxOptions = {},
-): RenderResult & {store: typeof defaultStore} {
-  if (!store) {
+import {render} from '@testing-library/react';
+import {Provider} from 'react-redux';
+import {configureStore} from '@reduxjs/toolkit';
+import movieReducer from './modules/movieSlice';
+import thunk from 'redux-thunk';
+
+const renderWithRedux = (
+  ui: React.ReactElement,
+  {
     store = configureStore({
       reducer: {
-        movies: movieSlice, // Adjust this based on where your reducers are.
+        movies: movieReducer,
       },
-      preloadedState: initialState,
-    });
-  }
-
+      middleware: getDefaultMiddleware => getDefaultMiddleware().prepend(thunk),
+    }),
+  } = {},
+) => {
   return {
     ...render(<Provider store={store}>{ui}</Provider>),
     store,
   };
-}
+};
+
+export {renderWithRedux};

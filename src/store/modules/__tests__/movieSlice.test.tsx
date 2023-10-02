@@ -2,8 +2,8 @@ import {
   movieSlice,
   fetchMovieSuggestions,
   fetchMovieResults,
-} from './movieSlice';
-import {MovieState} from '../../models/movie.model';
+} from '../movieSlice';
+import {MovieState} from '../../../models/movie.model';
 
 describe('movieSlice reducer', () => {
   const initialState: MovieState = {

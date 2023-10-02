@@ -1,4 +1,4 @@
-# Movie Search Application
+# Movie Search App
 
 This repository contains a web-based user interface for searching a database of movie metadata. The application provides an intuitive UI to query movie information based on a given input, fetches results from a backend API, and presents them to the user.
 
@@ -71,11 +71,11 @@ Ensure you have `node` and `npm` installed on your machine.
     or cypress tests
 
     ```bash
-    npm run cypress:open
+    npm run test:e2e
     ```
 
 8. **Build the Application**:
 
-9. ```bash
-   npm run build
+    ```bash
+      npm run build
    ```
