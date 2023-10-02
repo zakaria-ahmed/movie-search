@@ -1,3 +1,8 @@
+.app-header {
+  display: flex;
+  justify-content: center;
+}
+
 .movie-search-container {
   display: flex;
   flex-direction: column;

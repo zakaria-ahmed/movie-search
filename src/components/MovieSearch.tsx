@@ -31,18 +31,18 @@ export const MovieSearch = () => {
 
   const handleSearch = debounce((query: string) => {
     dispatch(fetchMovieResults(query));
+    dispatch(clearSuggestions());
   }, 300);
 
   const selectMovieFromSuggestions = (movieTitle: string) => {
     setInputValue(movieTitle);
-    dispatch(clearSuggestions());
     handleSearch(movieTitle);
   };
 
   let content;
   if (status === 'loading') {
     content = <div>Loading...</div>;
-  } else if (status === 'idle' && results.length > 0) {
+  } else if (status === 'succeeded' && results.length > 0) {
     content = (
       <ul>
         {results.map((movie: Movie) => (
